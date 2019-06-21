@@ -174,18 +174,13 @@ public class PluginManager {
           FileOutputStream fileOutputStream = new FileOutputStream("failedplugins.txt");
           Writer fstream = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8)
         ) {
-            try (Writer fstream = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8)) {
-
-                if (failedPlugins.size() > 0) {
-                    System.out.println("Some plugins failed to download: ");
-                    for (Plugin plugin : failedPlugins) {
-                        String failedPluginName = plugin.getName();
-                        System.out.println(failedPluginName);
-                        fstream.write(failedPluginName + "\n");
-                    }
+            if (failedPlugins.size() > 0) {
+                System.out.println("Some plugins failed to download: ");
+                for (Plugin plugin : failedPlugins) {
+                    String failedPluginName = plugin.getName();
+                    System.out.println(failedPluginName);
+                    fstream.write(failedPluginName + "\n");
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }   catch (IOException e) {
                 e.printStackTrace();
